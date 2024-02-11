@@ -3,6 +3,9 @@ package com.exam.jheverywhere.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 @Controller
 public class MainController {
   private int increaseNo = -1;
@@ -64,6 +67,28 @@ public class MainController {
     increaseNo++;
     return increaseNo;
   }
+
+  @GetMapping("/gugudan")
+  @ResponseBody
+  public String showGugudan(Integer dan, Integer limit) {
+    //int와 Integer의 차이 : int는 일반 자료형, Integer는 객체 자료형
+    //그래서 Integer는 null값을 가질수 있다
+    //@RequestParam을 안쓰고도 이렇게 기본값 설정이 가능함
+    if(dan ==  null){
+      limit=9;
+    }
+    if(dan == null){
+      limit=9;
+    }
+
+    //하지만 아래와 같이 매개변수를 한번 걸러줘야함
+    //일반 타입의 int가 들어올수 없기 때문에
+    final Integer finalDan = dan;
+    return IntStream.rangeClosed(1,limit)
+        .mapToObj(i->"%d * %d = %d".formatted(finalDan,i,finalDan*i))
+        .collect(Collectors.joining("<br>"));
+  }
+
 
 
 
