@@ -11,6 +11,6 @@ public class MainController {
   // 아래 함수의 리턴값을 문자열화 해서 브라우저 응답을 바디에 담는다.
   @ResponseBody
   public String index(){
-    return "안녕하세요";
+    return "제발 되라 왜 안되는거야 ㅠㅠ";
   }
 }
